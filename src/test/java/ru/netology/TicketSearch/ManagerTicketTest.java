@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class ManagerTicketTest {
     RepositoryTicket repo = new RepositoryTicket();
     ManagerTicket manager = new ManagerTicket(repo);
@@ -21,46 +23,59 @@ public class ManagerTicketTest {
         manager.add(ticket4);
         manager.add(ticket5);
     }
-@Test
-public void shouldAdd(){
-Ticket[]expected= {ticket1,ticket2,ticket3,ticket4,ticket5};
-Ticket[] actual = manager.findAllTicket();
-    Assertions.assertArrayEquals(expected,actual);
-}
+
     @Test
-    public void shouldSearchFromTo(){
-        Ticket[]expected= {ticket3};
-        Ticket[] actual = manager.searchByFromTo("SVO","GDZ");
-        Assertions.assertArrayEquals(expected,actual);
+    public void shouldAdd() {
+        Ticket[] expected = {ticket1, ticket2, ticket3, ticket4, ticket5};
+        Ticket[] actual = manager.findAllTicket();
+        Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
-    public void shouldSearchFromTo2(){
-        Ticket[]expected= {ticket1,ticket5};
-        Ticket[] actual = manager.searchByFromTo("TYD","CKH");
-        Assertions.assertArrayEquals(expected,actual);
+    public void shouldSearchFromTo() {
+        Ticket[] expected = {ticket3};
+        Ticket[] actual = manager.searchByFromTo("SVO", "GDZ");
+        Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
-    public void shouldSearchFrom(){
-        Ticket[]expected= {};
-        Ticket[] actual = manager.searchByFromTo("SVO","GDW");
-        Assertions.assertArrayEquals(expected,actual);
+    public void shouldSearchFromTo2() {
+        Ticket[] expected = {ticket1, ticket5};
+        Ticket[] actual = manager.searchByFromTo("TYD", "CKH");
+        Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
-    public void shouldSearchTo(){
-        Ticket[]expected= {};
-        Ticket[] actual = manager.searchByFromTo("SVO","LPK");
-        Assertions.assertArrayEquals(expected,actual);
+    public void shouldSearchFrom() {
+        Ticket[] expected = {};
+        Ticket[] actual = manager.searchByFromTo("SVO", "GDW");
+        Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSearchTo() {
+        Ticket[] expected = {};
+        Ticket[] actual = manager.searchByFromTo("SVO", "LPK");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
     @Test
     public void shouldRemoveNotId() {
         Assertions.assertThrows(NotFoundException.class, () -> {
             repo.removeById(20);
         });
     }
+
     @Test
     public void shouldAddProductExistingId() {
         Assertions.assertThrows(AlreadyExistsException.class, () -> {
             repo.addTicket(ticket1);
         });
+    }
+
+    @Test
+    public void shouldSort() {
+        Arrays.sort(manager.findAllTicket());
+
     }
 }
