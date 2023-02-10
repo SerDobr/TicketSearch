@@ -4,9 +4,9 @@ public class RepositoryTicket {
     protected Ticket[] tics = new Ticket[0];
 
     protected void addTicket(Ticket tic) throws AlreadyExistsException {
-if (findById(tic.getId())!=null){
-throw new AlreadyExistsException("Товар с ID: " + tic.getId() + " уже существует!!!");
-}
+        if (findById(tic.getId()) != null) {
+            throw new AlreadyExistsException("Товар с ID: " + tic.getId() + " уже существует!!!");
+        }
         Ticket[] tmp = new Ticket[tics.length + 1];
         for (int i = 0; i < tics.length; i++) {
             tmp[i] = tics[i];

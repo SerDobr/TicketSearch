@@ -38,7 +38,7 @@ public class ManagerTicket {
                 result = tmp;
 
             }
-        Arrays.sort(result,comparator);
+        Arrays.sort(result, comparator);
         return result;
 
     }

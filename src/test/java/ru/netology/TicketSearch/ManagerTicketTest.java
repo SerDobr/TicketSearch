@@ -21,6 +21,7 @@ public class ManagerTicketTest {
     Ticket ticket9 = new Ticket(9, 3300, "PEZ", "LNX", 90);
     Ticket ticket10 = new Ticket(10, 3100, "SVO", "GDZ", 130);
     Comparator<Ticket> comparator = new TimeComporator();
+
     @BeforeEach
     public void setup() {
         manager.add(ticket1);
@@ -40,36 +41,36 @@ public class ManagerTicketTest {
 
     @Test
     public void shouldAdd() {
-        Ticket[] expected = {ticket1, ticket2, ticket3, ticket4, ticket5,ticket6, ticket7, ticket8, ticket9, ticket10};
+        Ticket[] expected = {ticket1, ticket2, ticket3, ticket4, ticket5, ticket6, ticket7, ticket8, ticket9, ticket10};
         Ticket[] actual = manager.findAllTicket();
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchFromTo() {
-        Ticket[] expected = {ticket9,ticket4};
-        Ticket[] actual = manager.searchByFromTo("PEZ", "LNX",comparator);
+        Ticket[] expected = {ticket9, ticket4};
+        Ticket[] actual = manager.searchByFromTo("PEZ", "LNX", comparator);
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchFromTo2() {
-        Ticket[] expected = {ticket5, ticket3,ticket10,ticket1,ticket8};
-        Ticket[] actual = manager.searchByFromTo("SVO", "GDZ",comparator);
+        Ticket[] expected = {ticket5, ticket3, ticket10, ticket1, ticket8};
+        Ticket[] actual = manager.searchByFromTo("SVO", "GDZ", comparator);
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchFrom() {
         Ticket[] expected = {};
-        Ticket[] actual = manager.searchByFromTo("SVO", "GDW",comparator);
+        Ticket[] actual = manager.searchByFromTo("SVO", "GDW", comparator);
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchTo() {
         Ticket[] expected = {};
-        Ticket[] actual = manager.searchByFromTo("SVO", "LPK",comparator);
+        Ticket[] actual = manager.searchByFromTo("SVO", "LPK", comparator);
         Assertions.assertArrayEquals(expected, actual);
     }
 
@@ -89,8 +90,8 @@ public class ManagerTicketTest {
 
     @Test
     public void shouldSortAdd() {
-        Ticket[] expected = {ticket8, ticket2, ticket7, ticket3, ticket10,ticket5, ticket9, ticket4, ticket1, ticket6};
-        Ticket[] actual =(manager.findAllTicket());
+        Ticket[] expected = {ticket8, ticket2, ticket7, ticket3, ticket10, ticket5, ticket9, ticket4, ticket1, ticket6};
+        Ticket[] actual = (manager.findAllTicket());
         Arrays.sort(manager.findAllTicket());
         Assertions.assertArrayEquals(expected, actual);
     }

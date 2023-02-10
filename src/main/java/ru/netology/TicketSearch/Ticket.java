@@ -7,7 +7,6 @@ public class Ticket implements Comparable<Ticket> {
     protected String to; // Аэрапорт прилета
 
 
-
     protected int time; // время в пути
 
     public Ticket(int id, int price, String from, String to, int time) {
@@ -30,6 +29,7 @@ public class Ticket implements Comparable<Ticket> {
     public String getTo() {
         return to;
     }
+
     public int getTime() {
         return time;
     }
